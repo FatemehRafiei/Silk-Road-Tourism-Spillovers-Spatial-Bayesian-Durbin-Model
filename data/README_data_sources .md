@@ -32,21 +32,7 @@ This document summarizes all datasets used in the paper
    International Monetary Fund, *International Financial Statistics*.  
    **Used in model**: *ln-transformed*
 
-5. **UNESCO World Heritage Sites (total number)**  
-   **Source**: UNESCO World Heritage Centre  
-   **URL**: [https://whc.unesco.org/en/list/](https://whc.unesco.org/en/list/)  
-   **Used in model**: *Not included directly*
-
-6. **Air transport, passengers carried**  
-   **Source**: World Bank (assumed)  
-   **Description**: Number of passengers carried by air transport.  
-   **Used in model**: *ln-transformed*
-
-7. **`politunesco` (interaction term)**  
-   **Description**: Interaction between Political Stability and number of UNESCO World Heritage Sites.  
-   **Used in model**: *As a constructed interaction term*
-
-8. **Rule of Law**
+5. **Rule of Law**
   **Source**: Worldwide Governance Indicators (World Bank)
   **Description**: This indicator reflects perceptions of the extent to which agents have confidence in and abide by the rules of society, including the quality of contract enforcement, property rights, the police, and the courts, as well as the likelihood of crime and violence.
   **Used in model**: Raw score or standardized score (specify if applicable)
