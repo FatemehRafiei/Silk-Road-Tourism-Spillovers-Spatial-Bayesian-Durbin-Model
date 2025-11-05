@@ -47,21 +47,20 @@ This repository provides the computational framework to:
 ## 🌍 Spatial Weight Matrices
 
 ### Geographic (Inverse Distance)
-- Based on geodesic distance between capital cities.
-- Weights: \( w_{ij} = 1 / d_{ij} \)
+- Based on geodesic distance between capital cities.  
+- Weights: w<sub>ij</sub> = 1 / d<sub>ij</sub>  
 - Row-normalized.
 
 ### Trade-Based (Dynamic)
-- Constructed annually using **UN Comtrade** bilateral export data.
-- Reflects changing trade relationships (2002–2019).
+- Constructed annually using **UN Comtrade** bilateral export data.  
+- Reflects changing trade relationships (2002 – 2019).
 
 ### Cultural (Language + Religion)
 - **Linguistic proximity:** Gurevich et al. (2014) Linguistic Proximity Score.  
 - **Religious similarity:** Cosine similarity of Pew Research Center’s religious composition data.  
 - Final matrix:  
-  \[
-  W_{ij}^{final} = α W_{ij}^{lang} + (1−α) W_{ij}^{religion}, \quad α = 0.5
-  \]
+  W<sub>ij</sub><sup>final</sup> = α W<sub>ij</sub><sup>lang</sup> + (1 − α) W<sub>ij</sub><sup>religion</sup>,  α = 0.5
+
 
 ---
 
