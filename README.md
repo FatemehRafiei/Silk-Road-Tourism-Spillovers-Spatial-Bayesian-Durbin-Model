@@ -18,31 +18,30 @@ This repository provides the computational framework to:
 
 ---
 
-## ⚙️ Repository Structure
+## ⚙️ Repository Structure  
+**silkroad-tourism-bayesian-spatial-model/**  
+│  
+├── **data/**  
+│   ├── **raw/** — Raw input data sources  
+│   │   ├── `FINAL_WIDE_W.xlsx` — Main panel dataset (country–year wide format)  
+│   │   ├── `language.harvard.xlsx` — Linguistic proximity data  
+│   │   ├── `religious.xlsx` — Religious composition data (Pew Research)  
+│   │   ├── `trade_2002_2019.xlsx` — Bilateral trade data (UN Comtrade)  
+│   │   ├── `README_data_sources.md` — Description of data origins and sources  
+│   │   └── `.gitkeep` — Placeholder to keep the directory tracked  
+│   └── `.gitignore` — Ignore temporary or large data files  
+│  
+├── **notebooks/**  
+│   ├── `culture_mod.ipynb` — Bayesian SDM with cultural (linguistic–religious) weights  
+│   ├── `geo_mod.ipynb` — Bayesian SDM with geographic distance weights  
+│   └── `trade_mod.ipynb` — Bayesian SDM with trade-based (time-varying) weights  
+│  
+├── **docs/**  
+│   ├── `README.md` — Documentation overview  
+│   └── `LICENSE` — Repository license information  
+│  
+└── **README.md** — Main project readme  
 
-silkroad-tourism-bayesian-spatial-model/
-│
-├── data/
-│ ├── raw/ # Raw data: UN Comtrade, Pew Research, GeoNames, etc.
-│ ├── processed/ # Cleaned and merged datasets
-│
-├── scripts/
-│ ├── 01_build_distance_matrix.py
-│ ├── 02_build_trade_matrix.py
-│ ├── 03_build_cultural_matrix.py
-│ ├── 04_bayesian_sdm_estimation.py
-│ └── utils.py # Helper functions for preprocessing and diagnostics
-│
-├── results/
-│ ├── posterior_estimates/
-│ ├── figures/
-│ └── tables/
-│
-├── docs/
-│ ├── model_derivation.pdf
-│ └── supplementary_figures/
-│
-└── README.md
 
 
 ## 🌍 Spatial Weight Matrices
