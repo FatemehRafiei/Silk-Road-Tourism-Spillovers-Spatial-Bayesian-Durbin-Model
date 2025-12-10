@@ -20,33 +20,33 @@ This repository provides the computational framework to:
 
 ## ⚙️ Repository Structure  
 
+## Repository Structure
+
+\`\`\`text
 silkroad-tourism-bayesian-spatial-model/
-│
-├── data/
-│   ├── raw/                  # Raw input data sources
-│   │   ├── FINAL_WIDE_W.xlsx        # Main panel dataset (country–year wide format)
-│   │   ├── language.harvard.xlsx    # Linguistic proximity data
-│   │   ├── religious.xlsx           # Religious composition data (Pew Research)
-│   │   ├── trade_2002_2019.xlsx     # Bilateral trade data (UN Comtrade)
-│   │   ├── README_data_sources.md   # Description of data origins and sources
-│   │   └── .gitkeep                 # Placeholder to keep the directory tracked
-│   └── .gitignore                   # Ignore temporary or large data files
-│
-├── notebooks/
-│   ├── geo_mod.ipynb         # Bayesian SDM with geographic distance weights
-│   ├── trade_mod.ipynb       # Bayesian SDM with trade-based (time-varying) weights
-│   └── culture_mod.ipynb     # Bayesian SDM with cultural (linguistic–religious) weights
-│
-├── sdm_model/                # Python module with reusable functions
-│   ├── __init__.py
-│   ├── sdm_model.py          # run_sdm_model()
-│   ├── posterior_predict.py  # posterior_predict()
-│   ├── morans_I.py           # morans_I()
-│   └── loco.py               # run_loco()
-│
-├── docs/                     # Documentation
-├── LICENSE
-└── README.md                 # Main project readme
+    data/
+        raw/
+            FINAL_WIDE_W.xlsx        # Main panel dataset (country-year wide format)
+            language.harvard.xlsx    # Linguistic proximity data
+            religious.xlsx           # Religious composition data (Pew Research)
+            trade_2002_2019.xlsx     # Bilateral trade data (UN Comtrade)
+            README_data_sources.md   # Description of data sources
+            .gitkeep                 # Placeholder to keep folder tracked
+        .gitignore                  # Ignore temporary/large files
+    notebooks/
+        geo_mod.ipynb               # Bayesian SDM with geographic distance weights
+        trade_mod.ipynb             # Bayesian SDM with trade-based (time-varying) weights
+        culture_mod.ipynb           # Bayesian SDM with cultural (linguistic + religious) weights
+    sdm_model/                      # Python module with reusable functions
+        __init__.py
+        sdm_model.py
+        posterior_predict.py
+        morans_I.py
+        loco.py
+    docs/
+    LICENSE
+    README.md
+\`\`\`
 
 
 
