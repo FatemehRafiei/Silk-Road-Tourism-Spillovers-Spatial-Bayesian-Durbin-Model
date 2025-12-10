@@ -19,8 +19,9 @@ This repository provides the computational framework to:
 ---
 
 ## ⚙️ Repository Structure  
-**silkroad-tourism-bayesian-spatial-model/**  
-│  
+
+silkroad-tourism-bayesian-spatial-model/
+│
 ├── **data/**  
 │   ├── **raw/** — Raw input data sources  
 │   │   ├── `FINAL_WIDE_W.xlsx` — Main panel dataset (country–year wide format)  
@@ -30,17 +31,22 @@ This repository provides the computational framework to:
 │   │   ├── `README_data_sources.md` — Description of data origins and sources  
 │   │   └── `.gitkeep` — Placeholder to keep the directory tracked  
 │   └── `.gitignore` — Ignore temporary or large data files  
-│  
+│
 ├── **notebooks/**  
 │   ├── `culture_mod.ipynb` — Bayesian SDM with cultural (linguistic–religious) weights  
 │   ├── `geo_mod.ipynb` — Bayesian SDM with geographic distance weights  
 │   └── `trade_mod.ipynb` — Bayesian SDM with trade-based (time-varying) weights  
-│  
-├── **docs/**  
-│   ├── `README.md` — Documentation overview  
-│   └── `LICENSE` — Repository license information  
-│  
-└── **README.md** — Main project readme  
+│
+├── **sdm_model/** — Python module with reusable functions
+│   ├── __init__.py
+│   ├── sdm_model.py
+│   ├── posterior_predict.py
+│   ├── morans_I.py
+│   └── loco.py
+│
+├── docs/ — Documentation
+├── LICENSE
+└── **README.md** — Main project readme 
 
 
 
