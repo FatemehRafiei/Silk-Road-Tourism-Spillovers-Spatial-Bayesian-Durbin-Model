@@ -22,7 +22,7 @@ This repository provides the computational framework to:
 
 ## Repository Structure
 
-\`\`\`text
+
 silkroad-tourism-bayesian-spatial-model/
     data/
         raw/
@@ -46,7 +46,6 @@ silkroad-tourism-bayesian-spatial-model/
     docs/
     LICENSE
     README.md
-\`\`\`
 
 
 
