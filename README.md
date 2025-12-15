@@ -3,7 +3,7 @@
 This repository accompanies the paper **"Construction of geographic, trade, and cultural proximity matrices and Bayesian Spatial Durbin Model workflow for tourism spillover analysis"**, which is part of the project *Culture, Space, and Tourism Spillovers in the Silk Road*.
 
 The project presents a **reproducible spatial econometric workflow** that integrates:
-- The construction of **three spatial weight matrices** — geographic (inverse distance), trade-based (dynamic), and cultural (linguistic & religious similarity).
+- The construction of **three spatial weight matrices** — geographic (inverse distance), trade-based, and cultural (linguistic & religious similarity).
 - A **Bayesian Spatial Durbin Model (BSDM)** estimation framework.
 - A **nested CES utility model** linking domestic and international tourism consumption with spatial spillovers.
 
@@ -26,7 +26,7 @@ This repository provides the computational framework to:
 silkroad-tourism-bayesian-spatial-model/
     data/
         raw/
-            FINAL_WIDE_W.xlsx        # Main panel dataset (country-year wide format)
+            df_soretd.xlsx        # Main panel dataset (country-year wide format)
             language.harvard.xlsx    # Linguistic proximity data
             religious.xlsx           # Religious composition data (Pew Research)
             trade_2002_2019.xlsx     # Bilateral trade data (UN Comtrade)
