@@ -63,7 +63,6 @@ silkroad-tourism-bayesian-spatial-model/
 ├── LICENSE
 └── README.md
 
-
 ## 🌍 Spatial Weight Matrices
 
 This project develops and compares three types of spatial weight matrices (**W**).
@@ -71,18 +70,15 @@ This project develops and compares three types of spatial weight matrices (**W**
 ### 1️⃣ Geographic (Inverse Distance)
 
 - Based on geodesic distance between capital cities  
-- Weights defined as:
+- Weights defined as:  
 
-\[
-w_{ij} = \frac{1}{d_{ij}}
-\]
+  `w_ij = 1 / d_ij`
 
 - Row-normalized  
 
 ---
 
-### 2️⃣ Trade-Based 
-
+### 2️⃣ Trade-Based
 
 - Constructed annually using **UN Comtrade** bilateral export data  
 - Reflects changing trade relationships (2002–2019)
@@ -97,80 +93,14 @@ w_{ij} = \frac{1}{d_{ij}}
 - **Religious similarity**  
   Cosine similarity of Pew Research Center religious composition data  
 
-- Composite cultural weight matrix:
+- Composite cultural weight matrix:  
 
-\[
-W_{ij}^{final} = \alpha W_{ij}^{lang} + (1 - \alpha) W_{ij}^{religion},
-\quad \alpha = 0.5
-\]
+  `W_ij = α · W_ij^lang + (1 − α) · W_ij^religion`, with `α = 0.5`
 
+---
 
 ## 🧪 Robustness and Validation
 
-Robustness is tested by varying the relative weight of linguistic and religious similarity:
+Robustness is tested by varying the relative weight of linguistic and rel
 
-\[
-\alpha = 0.4,\; 0.5,\; 0.6
-\]
-
-Posterior means and **Highest Density Intervals (HDIs)** remain stable.
-
-## 📊 Data Sources
-
-The analysis relies on publicly available datasets:
-
-- **UN Comtrade** – Bilateral trade data  
-- **GeoNames** – Geographic coordinates  
-- **Pew Research Center (2025)** – Religious composition  
-- **Ethnologue / Gurevich et al. (2014)** – Linguistic similarity  
-
----
-
-## 💻 Reproducibility
-
-All scripts are written in **Python 3.10+** and rely on the following libraries:
-
-- `pandas`
-- `numpy`
-- `geopy`
-- `pymc`
-- `matplotlib`
-- `arviz`
-
-### Reproduce the Results
-
-Clone the repository:
-
-```bash
-git clone https://github.com/YOUR_USERNAME/silkroad-tourism-bayesian-spatial-model.git
-cd silkroad-tourism-bayesian-spatial-model
-## 📜 License
-
-This project is licensed under the **MIT License**.  
-You may use, modify, and distribute the code with proper attribution.
-
----
-
-## 👩‍💻 Author
-
-**Fatemeh Rafiei**
-
-- Conceptualization  
-- Methodology  
-- Writing – Original Draft  
-- Visualization  
-- Validation  
-
-📧 **Correspondence:**  
-Fatemehrafiei@semnan.ac.ir
-
----
-
-## 📚 Citation
-
-If you use this repository, please cite:
-
-> Rafiei, F. (2025). *Construction of geographic, trade, and cultural proximity matrices and Bayesian Spatial Durbin Model workflow for tourism spillover analysis*.  
-> GitHub repository:  
-> https://github.com/FatemehRafiei/silkroad-tourism-bayesian-spatial-model
 
