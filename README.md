@@ -74,6 +74,40 @@ This project develops and compares three types of spatial weight matrices (**W**
 Robustness is tested by varying the relative weight of linguistic and rel
 
 
+
+## 📜 License
+
+This project is licensed under the **MIT License**.  
+You may use, modify, and distribute the code with proper attribution.
+
+---
+
+## 👩‍💻 Author
+
+**Fatemeh Rafiei**
+
+- Conceptualization  
+- Methodology  
+- Writing – Original Draft  
+- Visualization  
+- Validation  
+
+📧 **Correspondence:**  
+Fatemehrafiei@semnan.ac.ir
+
+---
+
+## 📚 Citation
+
+If you use this repository, please cite:
+
+> Rafiei, F. (2025). *Construction of geographic, trade, and cultural proximity matrices and Bayesian Spatial Durbin Model workflow for tourism spillover analysis*.  
+> GitHub repository:  
+> https://github.com/FatemehRafiei/silkroad-tourism-bayesian-spatial-model
+
+
+
+
 ## ⚙️ Repository Structure
 
 To ensure correct indentation and rendering, the directory tree is shown in a single monospace code block:
