@@ -456,3 +456,80 @@ def summarize_sdm_trace(trace, countries_sorted, years_sorted, round_to=4, verbo
 
     return summary_main, df_alpha, df_time_alpha
 
+
+def build_design_mats(
+    df_sorted: pd.DataFrame,
+    W_base: np.ndarray,
+    x_cols: list[str] | None = None,
+    y_col: str = "inbound",
+) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray, np.ndarray, list[str], list[int], int, int]:
+    """
+    Build X, WX, y, country_idx, year_idx consistent with run_sdm_model ordering.
+
+    Assumes df_sorted is sorted by ['year','country'] and the panel is balanced (NT == N*T).
+    """
+    if x_cols is None:
+        x_cols = ['GDP', 'Political Stability', 'exchange rate', "Rule of Law: Estimate"]
+
+    df_sorted = df_sorted.sort_values(["year", "country"]).copy()
+    df_sorted["year"] = df_sorted["year"].astype(int)
+
+    years_sorted = sorted(df_sorted["year"].unique())
+    countries_sorted = sorted(df_sorted["country"].unique())
+    T, N = len(years_sorted), len(countries_sorted)
+
+    country_to_idx = {c: i for i, c in enumerate(countries_sorted)}
+    year_to_idx = {y: i for i, y in enumerate(years_sorted)}
+
+    country_idx = df_sorted["country"].map(country_to_idx).to_numpy("int32")
+    year_idx = df_sorted["year"].map(year_to_idx).to_numpy("int32")
+
+    X = df_sorted[x_cols].to_numpy("float64")
+    y = df_sorted[y_col].to_numpy("float64")
+
+    NT, K = X.shape
+    if NT != N * T:
+        raise ValueError("Balanced panel required (NT == N*T).")
+
+    WX = np.zeros((NT, K), dtype="float64")
+    for t in range(T):
+        X_t = X[t * N:(t + 1) * N, :]
+        WX[t * N:(t + 1) * N, :] = W_base @ X_t
+
+    return X, WX, y, country_idx, year_idx, countries_sorted, years_sorted, N, T
+
+
+def posterior_mean_predictions(
+    trace: az.InferenceData,
+    X: np.ndarray,
+    WX: np.ndarray,
+    country_idx: np.ndarray,
+    year_idx: np.ndarray,
+    W_base: np.ndarray,
+    N: int,
+    T: int,
+) -> np.ndarray:
+    """
+    Posterior-mean predictions for SDM:
+        y_hat_t = (I - rho W)^(-1) * XB_t
+    where XB_t = X_t beta + (W X_t) gamma + alpha_i + time_alpha_t.
+    """
+    post = trace.posterior
+    beta = post["beta"].mean(dim=("chain", "draw")).values
+    gamma = post["gamma"].mean(dim=("chain", "draw")).values
+    alpha = post["alpha"].mean(dim=("chain", "draw")).values
+    time_alpha = post["time_alpha"].mean(dim=("chain", "draw")).values
+    rho = float(post["rho"].mean(dim=("chain", "draw")).values)
+
+    XB = X @ beta + WX @ gamma + alpha[country_idx] + time_alpha[year_idx]
+    S = np.linalg.inv(np.eye(W_base.shape[0]) - rho * W_base)
+
+    y_hat = np.zeros_like(XB)
+    for t in range(T):
+        y_hat[t * N:(t + 1) * N] = S @ XB[t * N:(t + 1) * N]
+
+    return y_hat
+
+
+
+
