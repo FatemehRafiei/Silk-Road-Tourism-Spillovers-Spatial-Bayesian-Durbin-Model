@@ -32,36 +32,6 @@ This repository provides a computational framework to:
 
 ---
 
-## ⚙️ Repository Structure
-
-To ensure correct indentation and rendering, the directory tree is shown in a single monospace code block:
-
-```plaintext
-silkroad-tourism-bayesian-spatial-model/
-├── data/
-│   ├── df_sorted.xlsx                 # Main panel dataset (country-year wide format)
-│   ├── language.harvard.xlsx          # Linguistic proximity data
-│   ├── religious.xlsx                 # Religious composition data (Pew Research)
-│   ├── trade_2002_2019.xlsx           # Bilateral trade data (UN Comtrade)
-│   ├── W_cul04.xlsx                   # Cultural proximity weight matrix
-│   ├── W_cul05.xlsx                   # Cultural proximity weight matrix
-│   ├── W_cul06.xlsx                   # Cultural proximity weight matrix
-│   ├── W_geo.xlsx                    # Geographic distance weight matrix
-│   ├── W_trade.xlsx                  # Trade-based weight matrix
-│   └── README_data_sources.md        # Description of data sources
-├── notebooks/
-│   ├── geo_mod.ipynb                 # Bayesian SDM with geographic distance weights
-│   ├── trade_mod.ipynb               # Bayesian SDM with trade-based weights
-│   └── culture_mod.ipynb             # Bayesian SDM with cultural weights
-├── sdm_model/
-│   ├── __init__.py
-│   ├── sdm_model.py
-│   ├── posterior_predict.py
-│   ├── morans_I.py
-│   └── loco.py
-├── docs/
-├── LICENSE
-└── README.md
 
 ## 🌍 Spatial Weight Matrices
 
@@ -102,5 +72,37 @@ This project develops and compares three types of spatial weight matrices (**W**
 ## 🧪 Robustness and Validation
 
 Robustness is tested by varying the relative weight of linguistic and rel
+
+
+## ⚙️ Repository Structure
+
+To ensure correct indentation and rendering, the directory tree is shown in a single monospace code block:
+
+```plaintext
+silkroad-tourism-bayesian-spatial-model/
+├── data/
+│   ├── df_sorted.xlsx                 # Main panel dataset (country-year wide format)
+│   ├── language.harvard.xlsx          # Linguistic proximity data
+│   ├── religious.xlsx                 # Religious composition data (Pew Research)
+│   ├── trade_2002_2019.xlsx           # Bilateral trade data (UN Comtrade)
+│   ├── W_cul04.xlsx                   # Cultural proximity weight matrix
+│   ├── W_cul05.xlsx                   # Cultural proximity weight matrix
+│   ├── W_cul06.xlsx                   # Cultural proximity weight matrix
+│   ├── W_geo.xlsx                    # Geographic distance weight matrix
+│   ├── W_trade.xlsx                  # Trade-based weight matrix
+│   └── README_data_sources.md        # Description of data sources
+├── notebooks/
+│   ├── geo_mod.ipynb                 # Bayesian SDM with geographic distance weights
+│   ├── trade_mod.ipynb               # Bayesian SDM with trade-based weights
+│   └── culture_mod.ipynb             # Bayesian SDM with cultural weights
+├── sdm_model/
+│   ├── __init__.py
+│   ├── sdm_model.py
+│   ├── posterior_predict.py
+│   ├── morans_I.py
+│   └── loco.py
+├── docs/
+├── LICENSE
+└── README.md
 
 
