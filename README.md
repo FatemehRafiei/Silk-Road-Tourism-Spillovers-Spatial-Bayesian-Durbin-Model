@@ -101,9 +101,9 @@ Fatemehrafiei@semnan.ac.ir
 
 If you use this repository, please cite:
 
-> Rafiei, F. (2025). *Construction of geographic, trade, and cultural proximity matrices and Bayesian Spatial Durbin Model workflow for tourism spillover analysis*.  
+> Rafiei, F. (2025). *Bayesian Spatial Durbin Model workflow for tourism spillover analysis using geographic, trade, and cultural matrices.*
 > GitHub repository:  
-> https://github.com/FatemehRafiei/silkroad-tourism-bayesian-spatial-model
+> https://github.com/FatemehRafiei/Silk-Road-Tourism-Spillovers-Spatial-Bayesian-Durbin-Model
 
 
 
