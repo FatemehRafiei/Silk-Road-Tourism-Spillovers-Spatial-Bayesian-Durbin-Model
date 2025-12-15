@@ -399,63 +399,6 @@ def loco_cv(
 
     return pd.DataFrame(results)
 
-def summarize_sdm_trace(trace, countries_sorted, years_sorted, round_to=4, verbose=True):
-    """
-    Summarize posterior results from the SDM model.
-
-    Parameters
-    ----------
-    trace : arviz.InferenceData
-        Posterior samples from run_sdm_model.
-    countries_sorted : list[str]
-        Country names in the model's panel order.
-    years_sorted : list[int]
-        Years in the model's panel order.
-    round_to : int, default=4
-        Decimals used in the ArviZ summary table.
-    verbose : bool, default=True
-        If True, prints tables to stdout.
-
-    Returns
-    -------
-    summary_main : pd.DataFrame
-        Summary of main coefficients: rho, beta, gamma, sigma.
-    df_alpha : pd.DataFrame
-        Posterior mean and SD of country effects (alpha).
-    df_time_alpha : pd.DataFrame
-        Posterior mean and SD of time effects (time_alpha).
-    """
-    summary_main = az.summary(
-        trace, var_names=["rho", "beta", "gamma", "sigma"], round_to=round_to
-    )
-
-    alpha_post = trace.posterior["alpha"]
-    alpha_mean = alpha_post.mean(dim=("chain", "draw")).values
-    alpha_sd = alpha_post.std(dim=("chain", "draw")).values
-
-    time_post = trace.posterior["time_alpha"]
-    time_mean = time_post.mean(dim=("chain", "draw")).values
-    time_sd = time_post.std(dim=("chain", "draw")).values
-
-    df_alpha = pd.DataFrame({
-        "country": countries_sorted,
-        "alpha_mean": alpha_mean,
-        "alpha_sd": alpha_sd
-    })
-
-    df_time_alpha = pd.DataFrame({
-        "year": years_sorted,
-        "time_alpha_mean": time_mean,
-        "time_alpha_sd": time_sd
-    })
-
-    if verbose:
-        print("Main coefficients summary:\n", summary_main)
-        print("\nCountry effects (alpha):\n", df_alpha)
-        print("\nTime effects (time_alpha):\n", df_time_alpha)
-
-    return summary_main, df_alpha, df_time_alpha
-
 
 def build_design_mats(
     df_sorted: pd.DataFrame,
@@ -532,4 +475,118 @@ def posterior_mean_predictions(
 
 
 
+def morans_I_by_year(
+    trace: az.InferenceData,
+    X: np.ndarray,
+    WX: np.ndarray,
+    y: np.ndarray,
+    country_idx: np.ndarray,
+    year_idx: np.ndarray,
+    W_base: np.ndarray,
+    years_sorted: list[int],
+    N: int,
+    T: int,
+) -> pd.DataFrame:
+    """
+    Compute Moran's I on SDM structural residuals by year.
+
+    Residuals are defined as:
+        e_t = y_t - rho * W y_t - XB_t
+    where XB_t = X_t beta + (W X_t) gamma + alpha_i + time_alpha_t.
+    """
+    from libpysal.weights import W as W_pysal
+    from esda.moran import Moran
+
+    # Build PySAL W object
+    neighbors = {i: list(np.where(W_base[i] > 0)[0]) for i in range(N)}
+    weights = {i: W_base[i, neighbors[i]] for i in range(N)}
+    W_obj = W_pysal(neighbors, weights)
+
+    # Posterior means
+    post = trace.posterior
+    rho = float(post["rho"].mean(dim=("chain", "draw")).values)
+    beta = post["beta"].mean(dim=("chain", "draw")).values
+    gamma = post["gamma"].mean(dim=("chain", "draw")).values
+    alpha = post["alpha"].mean(dim=("chain", "draw")).values
+    time_alpha = post["time_alpha"].mean(dim=("chain", "draw")).values
+
+    XB = X @ beta + WX @ gamma + alpha[country_idx] + time_alpha[year_idx]
+
+    resid = np.zeros_like(y)
+    for t in range(T):
+        y_t = y[t * N:(t + 1) * N]
+        XB_t = XB[t * N:(t + 1) * N]
+        resid[t * N:(t + 1) * N] = y_t - rho * (W_base @ y_t) - XB_t
+
+    rows = []
+    for t in range(T):
+        r_t = resid[t * N:(t + 1) * N]
+        mi = Moran(r_t, W_obj)
+        rows.append({
+            "year": int(years_sorted[t]),
+            "moran_I": float(mi.I),
+            "p_norm": float(mi.p_norm),
+            "p_sim": float(mi.p_sim),
+        })
+
+    return pd.DataFrame(rows)
+
+
+
+def summarize_sdm_trace(trace, countries_sorted, years_sorted, round_to=4, verbose=True):
+    """
+    Summarize posterior results from the SDM model.
+
+    Parameters
+    ----------
+    trace : arviz.InferenceData
+        Posterior samples from run_sdm_model.
+    countries_sorted : list[str]
+        Country names in the model's panel order.
+    years_sorted : list[int]
+        Years in the model's panel order.
+    round_to : int, default=4
+        Decimals used in the ArviZ summary table.
+    verbose : bool, default=True
+        If True, prints tables to stdout.
+
+    Returns
+    -------
+    summary_main : pd.DataFrame
+        Summary of main coefficients: rho, beta, gamma, sigma.
+    df_alpha : pd.DataFrame
+        Posterior mean and SD of country effects (alpha).
+    df_time_alpha : pd.DataFrame
+        Posterior mean and SD of time effects (time_alpha).
+    """
+    summary_main = az.summary(
+        trace, var_names=["rho", "beta", "gamma", "sigma"], round_to=round_to
+    )
+
+    alpha_post = trace.posterior["alpha"]
+    alpha_mean = alpha_post.mean(dim=("chain", "draw")).values
+    alpha_sd = alpha_post.std(dim=("chain", "draw")).values
+
+    time_post = trace.posterior["time_alpha"]
+    time_mean = time_post.mean(dim=("chain", "draw")).values
+    time_sd = time_post.std(dim=("chain", "draw")).values
+
+    df_alpha = pd.DataFrame({
+        "country": countries_sorted,
+        "alpha_mean": alpha_mean,
+        "alpha_sd": alpha_sd
+    })
+
+    df_time_alpha = pd.DataFrame({
+        "year": years_sorted,
+        "time_alpha_mean": time_mean,
+        "time_alpha_sd": time_sd
+    })
+
+    if verbose:
+        print("Main coefficients summary:\n", summary_main)
+        print("\nCountry effects (alpha):\n", df_alpha)
+        print("\nTime effects (time_alpha):\n", df_time_alpha)
+
+    return summary_main, df_alpha, df_time_alpha
 
