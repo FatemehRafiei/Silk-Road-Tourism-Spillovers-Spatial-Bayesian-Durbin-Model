@@ -1,9 +1,8 @@
-# 📚 Construction of Geographic, Trade, and Cultural Proximity Matrices  
-## and Bayesian Spatial Durbin Model Workflow for Tourism Spillover Analysis
+# 📚 Bayesian Spatial Durbin Model workflow for tourism spillover analysis using geographic, trade, and cultural matrices
 
 This repository accompanies the paper:
 
-**“Construction of geographic, trade, and cultural proximity matrices and Bayesian Spatial Durbin Model workflow for tourism spillover analysis”**
+**“Bayesian Spatial Durbin Model workflow for tourism spillover analysis using geographic, trade, and cultural matrices”**
 
 This work is part of the project:
 
