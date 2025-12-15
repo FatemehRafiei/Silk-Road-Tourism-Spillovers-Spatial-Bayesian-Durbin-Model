@@ -18,24 +18,25 @@ This repository provides the computational framework to:
 
 ---
 
-## ⚙️ Repository Structure  
+## ⚙️ Repository Structure
 
+```text
 silkroad-tourism-bayesian-spatial-model/
 ├── data/
-│   ├── df_sorted.xlsx                # Main panel dataset (country-year wide format)
-│   ├── language.harvard.xlsx         # Linguistic proximity data
-│   ├── religious.xlsx                # Religious composition data (Pew Research)
-│   ├── trade_2002_2019.xlsx          # Bilateral trade data (UN Comtrade)
-│   ├── W_cul04.xlsx                  # Cultural proximity weight matrix
-│   ├── W_cul05.xlsx                  # Cultural proximity weight matrix
-│   ├── W_cul06.xlsx                  # Cultural proximity weight matrix
-│   ├── W_geo.xlsx                    # Geographic distance weight matrix
-│   ├── W_trade.xlsx                  # Trade-based weight matrix
-│   └── README_data_sources.md        # Description of data sources
+│   ├── df_sorted.xlsx                 # Main panel dataset (country-year wide format)
+│   ├── language.harvard.xlsx          # Linguistic proximity data
+│   ├── religious.xlsx                 # Religious composition data (Pew Research)
+│   ├── trade_2002_2019.xlsx           # Bilateral trade data (UN Comtrade)
+│   ├── W_cul04.xlsx                   # Cultural proximity weight matrix
+│   ├── W_cul05.xlsx                   # Cultural proximity weight matrix
+│   ├── W_cul06.xlsx                   # Cultural proximity weight matrix
+│   ├── W_geo.xlsx                     # Geographic distance weight matrix
+│   ├── W_trade.xlsx                   # Trade-based weight matrix
+│   └── README_data_sources.md         # Description of data sources
 ├── notebooks/
-│   ├── geo_mod.ipynb                 # Bayesian SDM with geographic distance weights
-│   ├── trade_mod.ipynb               # Bayesian SDM with trade-based weights
-│   └── culture_mod.ipynb             # Bayesian SDM with cultural (linguistic + religious) weights
+│   ├── geo_mod.ipynb                  # Bayesian SDM with geographic distance weights
+│   ├── trade_mod.ipynb                # Bayesian SDM with trade-based weights
+│   └── culture_mod.ipynb              # Bayesian SDM with cultural (linguistic + religious) weights
 ├── sdm_model/                         # Python module with reusable functions
 │   ├── __init__.py
 │   ├── sdm_model.py
