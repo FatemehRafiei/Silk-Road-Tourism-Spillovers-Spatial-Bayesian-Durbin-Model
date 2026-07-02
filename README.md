@@ -72,14 +72,26 @@ This project develops and compares three types of spatial weight matrices (**W**
 
 Robustness is tested by varying the relative weight of linguistic and rel
 
+👩‍💻 Author
+Fatemeh Rafiei-1
 
+Conceptualization
+Methodology
+Writing – Original Draft
+Visualization
+Validation
+📧 Correspondence:
+fatemehrafiei@semnan.ac.ir
 
 ## 📜 License
 
 This project is licensed under the **MIT License**.  
 You may use, modify, and distribute the code with proper attribution.
 
+📚 Citation
+If you use this repository, please cite:
 
+Rafiei, F. (2026). Bayesian Spatial Durbin Model workflow for tourism spillover analysis using geographic, trade, and cultural matrices. 
 
 
 ## ⚙️ Repository Structure
