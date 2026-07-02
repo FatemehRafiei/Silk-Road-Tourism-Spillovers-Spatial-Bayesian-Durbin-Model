@@ -79,18 +79,6 @@ Robustness is tested by varying the relative weight of linguistic and rel
 This project is licensed under the **MIT License**.  
 You may use, modify, and distribute the code with proper attribution.
 
----
-
-## 👩‍💻 Author
-
-**Fatemeh Rafiei**
-
-- Conceptualization  
-- Methodology  
-- Writing – Original Draft  
-- Visualization  
-- Validation  
-
 
 
 
