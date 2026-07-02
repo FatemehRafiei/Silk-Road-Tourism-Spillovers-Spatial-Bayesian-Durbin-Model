@@ -91,19 +91,6 @@ You may use, modify, and distribute the code with proper attribution.
 - Visualization  
 - Validation  
 
-📧 **Correspondence:**  
-Fatemehrafiei@semnan.ac.ir
-
----
-
-## 📚 Citation
-
-If you use this repository, please cite:
-
-> Rafiei, F. (2025). *Bayesian Spatial Durbin Model workflow for tourism spillover analysis using geographic, trade, and cultural matrices.*
-> GitHub repository:  
-> https://github.com/FatemehRafiei/Silk-Road-Tourism-Spillovers-Spatial-Bayesian-Durbin-Model
-
 
 
 
