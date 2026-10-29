@@ -1,4 +1,4 @@
-# 📚 Bayesian Spatial Durbin Model workflow for tourism spillover analysis using geographic, trade, and cultural matrices
+# 📚 Trade and Cultural Connectivity in Tourism Spillovers: A Bayesian Spatial Durbin Analysis
 
 This repository accompanies the paper:
 
